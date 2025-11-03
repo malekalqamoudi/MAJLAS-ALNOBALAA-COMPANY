@@ -1,263 +1,547 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Majlis Al Nobala Company</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Majlis Al Nobala Company | Luxury Furniture Import & Trade</title>
+  <meta name="description" content="Majlis Al Nobala Company imports and trades premium home & office furniture: sofas, dining tables, bedroom sets, office desks, and décor. Fast delivery, installation, and interior consulting." />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="favicon.ico" />
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to left, #003366, #66b3ff);
-      color: #fff;
-      scroll-behavior: smooth;
+    :root{
+      --dark:#2e2e2e;         /* charcoal */
+      --beige:#dcd3c3;        /* soft beige */
+      --gold:#c9a646;         /* refined gold */
+      --paper:#f6f4ef;        /* warm paper */
+      --ink:#1f1f1f;          /* text */
+      --muted:#8a8a8a;        /* muted text */
+      --card:rgba(255,255,255,.10);
+      --card-border:rgba(255,255,255,.18);
     }
 
-    header {
-      background-color: rgba(0, 51, 102, 0.9);
-      color: #ffffff;
-      padding: 30px 20px;
-      text-align: center;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:linear-gradient(135deg,var(--dark),var(--beige));
+      color:var(--paper);
+      overflow-x:hidden;
+      scroll-behavior:smooth;
     }
 
-    header img.logo {
-      width: 220px;
-      height: 190px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #ffffff;
-      display: block;
-      margin: 0 auto 10px auto;
+    a{color:inherit}
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background:rgba(0,0,0,.35);
+      backdrop-filter:blur(8px);
+      border-bottom:1px solid rgba(255,255,255,.12);
+    }
+    .container{width:min(1200px,92%); margin-inline:auto}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .logo{
+      width:48px;height:48px;border-radius:12px;overflow:hidden;
+      display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),#e7d39a);color:#2b2b2b;font-weight:800
+    }
+    .brand h1{margin:0;font-size:18px;color:#fff}
+    .links a{
+      text-decoration:none;font-weight:700;padding:10px 12px;border-radius:10px;color:#f3e7cd;
+    }
+    .links a:hover{background:rgba(255,255,255,.12)}
+
+    /* Hero */
+    .hero{
+      position:relative; isolation:isolate;
+      padding:84px 0 56px;
+      background:
+        radial-gradient(900px 420px at 120% -10%, rgba(201,166,70,.20), transparent 40%),
+        radial-gradient(800px 380px at -20% 10%, rgba(220,211,195,.20), transparent 45%);
+    }
+    .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:28px}
+    @media (max-width:900px){ .hero-grid{grid-template-columns:1fr} }
+    .hero h2{margin:0 0 10px;font-size:38px;line-height:1.18;color:#fff}
+    .hero p{margin:0;color:#e7e0d4}
+    .badge{display:inline-block;background:rgba(201,166,70,.18);color:#ffe6a8;border:1px solid rgba(201,166,70,.35);padding:6px 10px;border-radius:999px;font-weight:700;font-size:12px;margin-bottom:12px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+    .btn{border:none;cursor:pointer;font-weight:800;border-radius:12px;padding:12px 16px;font-size:15px;transition:.2s transform,.2s box-shadow,.2s background}
+    .btn-primary{background:linear-gradient(135deg,var(--gold),#e4cc83);color:#2a2a2a}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 26px rgba(201,166,70,.25)}
+    .btn-ghost{background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.18)}
+    .btn-ghost:hover{background:rgba(255,255,255,.18)}
+
+    /* Optional hero image hook */
+    .hero-visual{
+      background:var(--card);
+      border:1px solid var(--card-border);
+      border-radius:18px; padding:18px; min-height:260px;
+      display:grid;place-items:center; text-align:center;
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-visual small{color:#ddd6c6}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+    /* Sections */
+    section{padding:60px 0}
+    .card{
+      background:var(--card); border:1px solid var(--card-border);
+      border-radius:16px; box-shadow:0 14px 28px rgba(0,0,0,.18);
+    }
+    .section-title{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:14px}
+    h3{margin:0;color:#ffe9b2}
+    .divider{height:4px;background:linear-gradient(90deg,var(--gold),var(--beige));border-radius:999px}
+
+    /* About - two column text */
+    .about-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:18px
+    }
+    @media (max-width:1000px){.about-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width:640px){.about-grid{grid-template-columns:1fr}}
+
+    /* Why choose us */
+    .features{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}
+    @media (max-width:900px){ .features{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:520px){ .features{grid-template-columns:1fr} }
+    .feature{padding:18px;border-radius:14px;border:1px dashed rgba(255,255,255,.22);display:grid;gap:6px;transition:.25s transform}
+    .feature:hover{transform:translateY(-4px)}
+    .feature .ico{font-size:22px}
+    .muted{color:#e4dac7a8}
+
+    /* Products */
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    @media (max-width:1100px){ .grid{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:780px){ .grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:520px){ .grid{grid-template-columns:1fr} }
+    .thumb{height:200px;overflow:hidden;border-bottom:1px solid rgba(255,255,255,.16)}
+    .thumb img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.05)}
+    .p16{padding:16px}
+    .card h4{margin:0 0 6px;color:#ffe9b2}
+    .small{font-size:13px;color:#e9dfcda6}
+
+    /* Offers */
+    .offer{display:flex;align-items:center;gap:14px;padding:14px;border-radius:12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18)}
+    .pill{font-size:12px;padding:6px 10px;border-radius:999px;background:rgba(201,166,70,.18);border:1px solid rgba(201,166,70,.35);color:#ffe6a8;font-weight:800}
+
+    /* Testimonials slider (simple) */
+    .slider{position:relative;overflow:hidden;border-radius:16px}
+    .slides{display:flex;transition:transform .5s ease}
+    .testi{min-width:100%;padding:22px}
+    .navdots{display:flex;gap:8px;justify-content:center;margin-top:10px}
+    .dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.35);cursor:pointer}
+    .dot.active{background:#ffe6a8}
+
+    /* Gallery slider (horizontal) */
+    .gallery{display:flex;gap:10px;overflow:auto;padding:4px;scroll-snap-type:x mandatory}
+    .gallery img{height:160px;width:260px;object-fit:cover;border-radius:12px;scroll-snap-align:start;border:1px solid rgba(255,255,255,.18)}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    @media (max-width:900px){ .contact-grid{grid-template-columns:1fr} }
+    form{background:var(--card);border:1px solid var(--card-border);border-radius:14px;padding:18px}
+    .field{display:grid;gap:6px;margin-bottom:10px}
+    label{font-size:13px;color:#fff8e0}
+    input,textarea{
+      border:none;border-radius:10px;padding:12px;background:rgba(255,255,255,.9);color:#222;font-family:inherit
+    }
+    textarea{min-height:120px;resize:vertical}
+    .ok{color:#d4ffcc;font-weight:700}
+
+    /* Footer */
+    footer{margin-top:40px;background:rgba(0,0,0,.35);border-top:1px solid rgba(255,255,255,.12)}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:18px;padding:26px 0}
+    @media (max-width:900px){ .footer-grid{grid-template-columns:1fr 1fr} }
+    @media (max-width:560px){ .footer-grid{grid-template-columns:1fr} }
+    footer a{text-decoration:none;color:#ffe6a8}
+    footer a:hover{text-decoration:underline}
+    .sub{background:#232323;color:#d7cab3;padding:10px 0;text-align:center;font-size:13px}
+
+    /* Reveal animations */
+    .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+    .reveal.show{opacity:1;transform:none}
+
+    /* Floating WhatsApp */
+    .wa{
+      position:fixed;right:18px;bottom:18px;width:56px;height:56px;border-radius:50%;
+      background:#25d366;color:#fff;display:grid;place-items:center;font-size:28px;text-decoration:none;
+      box-shadow:0 12px 28px rgba(0,0,0,.28);z-index:60
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 36px;
-      font-weight: 700;
-    }
-
-    header h3 {
-      margin: 5px 0 0 0;
-      font-size: 18px;
-      font-weight: 500;
-      color: #e6e6e6;
-    }
-
-    nav {
-      display: flex;
-      justify-content: center;
-      background-color: #00509e;
-    }
-
-    nav a {
-      text-decoration: none;
-      color: #ffffff;
-      padding: 15px 20px;
-      font-weight: bold;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      background-color: #66b3ff;
-      color: #003366;
-      border-radius: 5px;
-    }
-
-    section {
-      padding: 50px 20px;
-      text-align: left;
-      background: rgba(0,0,0,0.2);
-      margin: 30px;
-      border-radius: 15px;
-    }
-
-    section h1, section h2 {
-      color: #ffffff;
-    }
-
-    section h1 {
-      font-size: 36px;
-      margin-bottom: 15px;
-    }
-
-    section h2 {
-      font-size: 26px;
-      margin-bottom: 10px;
-    }
-
-    section p {
-      line-height: 1.8;
-      margin-bottom: 15px;
-      color: #f0f0f0;
-    }
-
-    .divider {
-      height: 5px;
-      width: 80px;
-      background-color: #66b3ff;
-      margin: 30px auto;
-      border-radius: 3px;
-    }
-
-    .services div {
-      margin: 25px 0;
-    }
-
-    .gallery img {
-      width: 300px;
-      height: 200px;
-      margin: 10px;
-      border-radius: 10px;
-      object-fit: cover;
-      border: 2px solid #66b3ff;
-    }
-
-    iframe {
-      width: 90%;
-      height: 400px;
-      border: 0;
-      border-radius: 10px;
-      margin-top: 20px;
-    }
-
-    form {
-      background: rgba(255,255,255,0.1);
-      max-width: 500px;
-      margin: 20px auto;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-      border: none;
-      border-radius: 5px;
-      font-family: inherit;
-      background: rgba(255,255,255,0.8);
-      color: #003366;
-    }
-
-    button {
-      background-color: #003366;
-      color: #ffffff;
-      border: none;
-      padding: 12px 25px;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background-color: #66b3ff;
-      color: #003366;
-    }
-
-    footer {
-      background-color: #003366;
-      color: #ffffff;
-      text-align: center;
-      padding: 20px;
-    }
-
-    footer p {
-      margin: 0;
-      color: #e6e6e6;
-    }
+    /* Fancy headings hover glow */
+    h3:hover, h4:hover { text-shadow: 0 0 10px rgba(201,166,70,.45); }
   </style>
+  <!-- Floating Social Buttons -->
+<a class="social fb" href="https://www.facebook.com/share/16ZkdbArpf/?mibextid=wwXIfr" target="_blank" aria-label="Facebook">
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24">
+    <path d="M22.675 0h-21.35C.597 0 0 .597 0 1.326v21.348C0 23.403.597 24 
+    1.326 24H12.82v-9.294H9.692V11.03h3.128V8.414c0-3.1 
+    1.893-4.788 4.659-4.788 1.325 0 2.464.099 
+    2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 
+    1.763v2.315h3.587l-.467 3.676h-3.12V24h6.116C23.403 
+    24 24 23.403 24 22.674V1.326C24 .597 23.403 0 
+    22.675 0z"/>
+  </svg>
+</a>
+
+<a class="social tk" href="http://www.tiktok.com/@algamude.1" target="_blank" aria-label="TikTok">
+  <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="white" viewBox="0 0 24 24">
+    <path d="M12 2c1.7 0 3.3.5 4.6 1.5 1.2.9 2.1 2.1 
+    2.6 3.6 1.1.4 2.2.6 3.4.6v3c-1.5 0-3-.3-4.3-.9v5.9c0 
+    4.1-3.3 7.3-7.3 7.3S3.7 19.8 3.7 15.7 7 8.4 11 8.4v3c-1.5 
+    0-2.7 1.2-2.7 2.7s1.2 2.7 2.7 2.7c1.5 0 2.7-1.2 
+    2.7-2.7V2z"/>
+  </svg>
+</a>
+
+<a class="wa" href="https://wa.me/218912131816" target="_blank" aria-label="Chat on WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" viewBox="0 0 24 24">
+    <path d="M20.52 3.48A11.77 11.77 0 0 0 12 0C5.37 0 .07 
+    5.3.07 11.9c0 2.1.56 4.1 1.62 5.9L0 24l6.4-1.6c1.8 1 
+    3.8 1.5 5.9 1.5h.01c6.63 0 11.93-5.3 11.93-11.9 
+    0-3.18-1.24-6.17-3.52-8.47zM12.3 21.5h-.01c-1.8 
+    0-3.57-.5-5.1-1.4l-.36-.22-3.8 1 1-3.7-.24-.38a9.5 
+    9.5 0 0 1-1.5-5.1c0-5.2 4.3-9.4 9.6-9.4 2.6 0 5 
+    1 6.8 2.8 1.8 1.8 2.8 4.2 2.8 6.7 0 5.3-4.3 
+    9.6-9.6 9.6zm5.3-7.2c-.29-.14-1.7-.84-1.9-.93-.26-.1-.45-.14-.64.14s-.74.92-.9 
+    1.1-.33.2-.62.07c-.29-.14-1.2-.45-2.3-1.4-.85-.76-1.4-1.7-1.6-2-.17-.29-.02-.44.13-.58.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.03-.5-.08-.14-.64-1.55-.88-2.12-.23-.55-.47-.48-.64-.49h-.55c-.19 
+    0-.5.07-.76.36s-1 1-1 2.4 1 2.8 1.1 3c.14.19 1.9 
+    2.9 4.5 4 2.6 1 2.6.67 3.1.63.5-.04 1.7-.69 
+    1.9-1.3.23-.6.23-1.1.16-1.2-.06-.1-.26-.17-.55-.31z"/>
+  </svg>
+</a>
+
+<style>
+.social {
+  position: fixed;
+  right: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  box-shadow: 0 12px 28px rgba(0,0,0,.28);
+  z-index: 60;
+  transition: transform 0.2s;
+}
+.social:hover { transform: translateY(-4px); }
+
+.fb {
+  bottom: 160px;
+  background: linear-gradient(135deg, #3b5998, #1d2d50); /* Facebook */
+}
+
+.tk {
+  bottom: 95px;
+  background: linear-gradient(135deg, #000000, #ff0050); /* TikTok */
+}
+
+.wa {
+  bottom: 30px;
+  background: #25d366; /* WhatsApp */
+}
+</style>
+
 </head>
 <body>
 
-<header>
-  <img src="logo.png" alt="Company Logo" class="logo">
-  <h1>MAJLAS ALNOBALAA COMPANY</h1>
-  <h3>Furniture Import and Trade</h3>
-</header>
-
-<nav>
-  <a href="#about">About Us</a>
-  <a href="#services">Our Services</a>
-  <a href="#gallery">Gallery</a>
-  <a href="#contact">Contact</a>
-</nav>
-
-<section id="about">
-  <h1>About Us</h1>
-  <div class="divider"></div>
-  <p><strong>MAJLAS ALNOBALAA COMPANY</strong> is a leading firm specializing in the import and trade of high-end furniture.</p>
-  <p>We are dedicated to delivering top-quality international products to both local and global clients, focusing on design, elegance, and durability.</p>
-  <p>We maintain strong relationships with top furniture manufacturers and suppliers worldwide, offering exclusive and premium collections that meet all tastes.</p>
-  <p>Our professional team provides innovative solutions that fulfill customer needs in terms of quality, design, and functionality.</p>
-  <p>We strive to build long-term relationships with our clients based on trust, integrity, and exceptional service.</p>
-  <p>Our vision is to become the preferred destination for those seeking distinguished and luxurious furniture.</p>
-</section>
-
-<section id="services">
-  <h1>Our Services</h1>
-  <div class="divider"></div>
-  <div class="services">
-    <div>
-      <h2>Global Furniture Import</h2>
-      <p>We import the finest furniture from international factories, including living rooms, bedrooms, dining rooms, and office furniture.</p>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#">
+        <!-- leave empty image area for your real logo -->
+<img src="logo.png" alt="Majlis Al Nobala Logo" class="logo">
+        <h1>Majlis Al Nobala Company</h1>
+      </a>
+      <div class="links">
+        <a href="#about">About</a>
+        <a href="#why">Why Us</a>
+        <a href="#products">Products</a>
+        <a href="#offers">Offers</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
     </div>
-   
-    <div>
-      <h2>Local Distribution</h2>
-      <p>We offer premium furniture through our showrooms and trusted partners, allowing customers to view and experience the products directly.</p>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-grid">
+      <div class="reveal">
+        <span class="badge">Luxury Furniture • Import & Trade</span>
+        <h2>Timeless furniture that elevates your home and office.</h2>
+        <p>We import premium sofas, dining sets, bedroom collections, office furniture, and décor from trusted global manufacturers—delivered and installed professionally.</p>
+        <div class="cta">
+          <a href="#products" class="btn btn-primary">Explore Collection</a>
+          <a href="https://wa.me/218912131816" class="btn btn-ghost" target="_blank" rel="noopener">WhatsApp Us</a>
+        </div>
+      </div>
+      <div class="hero-visual card reveal">
+<img src="hero.png" alt="Majlis Al Nobala Showroom" style="width:100%; border-radius:16px; object-fit:cover; height:350px;">
+      </div>
     </div>
-    <div>
-      <h2>Interior Design & Consultation</h2>
-      <p>We provide professional consultations to help clients choose furniture that fits their space and décor perfectly.</p>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="reveal">
+    <div class="container">
+      <div class="section-title">
+        <h3>About Us</h3>
+      </div>
+      <div class="divider"></div>
+
+      <div class="about-grid">
+        <p><strong>Majlis Al Nobala Company</strong> is a leading furniture import and distribution firm specializing in high-quality, luxury furnishings. Our company was established to bring world-class products to local and international clients with a strong focus on quality and timeless design.</p>
+        <p>We maintain strong relationships with top manufacturers and suppliers around the world to source exclusive and distinguished furniture pieces that meet all tastes. Our professional team is dedicated to delivering innovative solutions that satisfy every customer’s needs for quality, form, and function.</p>
+        <p>Our vision is to be the first choice for customers seeking refined and luxurious furniture by maintaining the highest standards of quality and credibility. We strive to build long-term relationships with our clients based on trust and excellence.</p>
+      </div>
     </div>
-    <div>
-      <h2>Custom Furniture</h2>
-      <p>We design and craft customized furniture pieces based on client preferences, ensuring precision and superior quality.</p>
+  </section>
+
+  <!-- WHY CHOOSE US -->
+  <section id="why" class="reveal">
+    <div class="container">
+      <div class="section-title">
+        <h3>Why Choose Us</h3>
+      </div>
+      <div class="divider"></div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="ico">🪑</div>
+          <strong>Premium Materials</strong>
+          <span class="muted">Solid wood, durable fabrics, refined finishes.</span>
+        </div>
+        <div class="feature">
+          <div class="ico">🎨</div>
+          <strong>Modern & Classic</strong>
+          <span class="muted">Curated designs that fit every interior mood.</span>
+        </div>
+        <div class="feature">
+          <div class="ico">🚚</div>
+          <strong>Delivery & Install</strong>
+          <span class="muted">Fast delivery and expert installation nationwide.</span>
+        </div>
+        <div class="feature">
+          <div class="ico">🤝</div>
+          <strong>Trusted Support</strong>
+          <span class="muted">After-sales care and reliable customer service.</span>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="gallery">
-  <h1>Gallery</h1>
-  <div class="divider"></div>
-  <div class="gallery">
-    <img src="sofa.png" alt="Luxury Living Room">
-    <img src="table.png" alt="Bedroom Furniture">
-    <img src="bed.png" alt="Modern Furniture">
-  </div>
-</section>
+  <!-- PRODUCTS -->
+  <section id="products" class="reveal">
+    <div class="container">
+      <div class="section-title"><h3>Featured Products</h3></div>
+      <div class="divider"></div>
 
-<section id="contact">
-  <h1>Contact Us</h1>
-  <div class="divider"></div>
-  <p>📍 Address: Janzour – Ring Road, Libya</p>
-  <p>📞 Phone / WhatsApp: <a href="https://wa.me/218912131816" target="_blank" style="color:#66b3ff;">+218 91 213 18 16</a></p>
-  <p>✉️ Email: info@noblesfurniture.com</p>
+      <div class="grid" style="margin-top:16px">
+        <article class="card">
+          <div class="thumb"><img src="sofa.png" alt="Luxury Sofa"></div>
+          <div class="p16">
+            <h4>Luxury Sofas</h4>
+            <p class="small">Crafted for comfort and elegance with premium upholstery.</p>
+          </div>
+        </article>
 
-  <iframe 
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3476.338405489936!2d13.000000!3d32.816700!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13a8e00a9c63a9e9%3A0x1!2sJanzour%2C%20Tripoli!5e0!3m2!1sen!2sly!4v0000000000000"
-    allowfullscreen="" loading="lazy"></iframe>
-</section>
+        <article class="card">
+          <div class="thumb"><img src="table.png" alt="Dining Table"></div>
+          <div class="p16">
+            <h4>Dining Tables</h4>
+            <p class="small">Marble & hardwood options to elevate your dining experience.</p>
+          </div>
+        </article>
 
-<footer>
-  <p>© 2025 Majlis Al Nobala Company. All rights reserved.</p>
-</footer>
+        <article class="card">
+          <div class="thumb"><img src="bed.png" alt="Bedroom Set"></div>
+          <div class="p16">
+            <h4>Bedroom Sets</h4>
+            <p class="small">Complete sets that blend comfort, storage and style.</p>
+          </div>
+        </article>
 
-<script>
-function sendMessage(event) {
-  event.preventDefault();
-  const name = document.getElementById('name').value;
-  document.getElementById('result').textContent = "✅ Message sent successfully. Thank you, " + name + "!";
-  event.target.reset();
-}
-</script>
+        <article class="card">
+          <div class="thumb"><img src="office.png" alt="Office Furniture"></div>
+          <div class="p16">
+            <h4>Office Furniture</h4>
+            <p class="small">Smart desks, ergonomic chairs and storage for productivity.</p>
+          </div>
+        </article>
+      </div>
 
+      <!-- mini gallery slider -->
+      <div class="card" style="margin-top:18px;padding:12px">
+        <div class="gallery" aria-label="Showroom gallery">
+          <img src="decor.png" alt="Decor 1" loading="lazy" />
+          <img src="sofa.png" alt="Sofa 2" loading="lazy" />
+          <img src="table.png" alt="Table 2" loading="lazy" />
+          <img src="bed.png" alt="Bed 2" loading="lazy" />
+          <img src="office.png" alt="Office 2" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFERS -->
+  <section id="offers" class="reveal">
+    <div class="container">
+      <div class="section-title"><h3>Current Highlights</h3></div>
+      <div class="divider"></div>
+
+      <div class="grid" style="margin-top:16px">
+        <div class="offer">
+          <span class="pill">NEW</span>
+          <strong>Italian Leather Sofa Set</strong>
+          <span class="small">— premium comfort, limited stock.</span>
+        </div>
+        <div class="offer">
+          <span class="pill">HOT</span>
+          <strong>Solid Oak Dining Table</strong>
+          <span class="small">— classic look, modern durability.</span>
+        </div>
+        <div class="offer">
+          <span class="pill">TREND</span>
+          <strong>Minimalist Office Desk</strong>
+          <span class="small">— clean lines, cable management.</span>
+        </div>
+        <div class="offer">
+          <span class="pill">SET</span>
+          <strong>Bedroom Suite</strong>
+          <span class="small">— bed + wardrobe + side tables.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials" class="reveal">
+    <div class="container">
+      <div class="section-title"><h3>What Clients Say</h3></div>
+      <div class="divider"></div>
+
+      <div class="slider card" id="t_slider">
+        <div class="slides" id="t_slides">
+          <div class="testi">
+            <p>“The best furniture experience in Tripoli — elegant pieces and smooth delivery.”</p>
+            <p class="small">— A. Khalid, Janzour</p>
+          </div>
+          <div class="testi">
+            <p>“Great quality and professional installation. Highly recommended.”</p>
+            <p class="small">— M. B., Gargaresh</p>
+          </div>
+          <div class="testi">
+            <p>“They helped us design the living room. Beautiful result!”</p>
+            <p class="small">— S. A., Ain Zara</p>
+          </div>
+        </div>
+      </div>
+      <div class="navdots" id="t_dots" aria-label="Testimonials navigation"></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <div class="container">
+      <div class="section-title"><h3>Contact Us</h3></div>
+      <div class="divider"></div>
+
+      <div class="contact-grid" style="margin-top:16px">
+        <form onsubmit="sendMessage(event)" aria-label="Contact form">
+          <div class="field">
+            <label for="name">Full Name</label>
+            <input id="name" placeholder="Your name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="field">
+            <label for="message">Your Message</label>
+            <textarea id="message" placeholder="Tell us what you’re looking for…" required></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Send Message</button>
+          <p id="result" class="ok" style="display:none;margin-top:8px">✅ Message received. Thank you!</p>
+        </form>
+
+        <div class="card" style="padding:16px">
+          <h4 style="margin:0 0 8px;color:#ffe9b2">Showroom & Hours</h4>
+          <p class="small">📍 Janzour – Ring Road, Tripoli</p>
+          <p class="small">🕒 Daily 9:00 AM – 10:00 PM</p>
+          <p class="small">📞 WhatsApp: <a href="https://wa.me/218912131816" target="_blank" rel="noopener" style="color:#ffe6a8">+218 91 213 1816</a></p>
+          <p class="small">✉️ Email: info@noblesfurniture.com</p>
+          <div style="margin-top:10px;border-radius:12px;overflow:hidden">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3476.338405489936!2d13.000000!3d32.816700!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13a8e00a9c63a9e9%3A0x1!2sJanzour%2C%20Tripoli!5e0!3m2!1sen!2sly!4v0000000000000"
+              width="100%" height="260" style="border:0" allowfullscreen="" loading="lazy"></iframe>
+          </div>
+          <p class="small muted" style="margin-top:8px">* Replace contact details and map with your exact info when ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <p style="margin:0 0 6px;font-weight:800;color:#ffe9b2">Majlis Al Nobala Company</p>
+        <p class="small">Luxury furniture import & trade. Delivery, installation, and interior consulting.</p>
+      </div>
+      <div>
+        <p style="margin:0 0 6px;font-weight:800;color:#ffe9b2">Links</p>
+        <p class="small"><a href="#about">About</a></p>
+        <p class="small"><a href="#products">Products</a></p>
+        <p class="small"><a href="#offers">Offers</a></p>
+        <p class="small"><a href="#contact">Contact</a></p>
+      </div>
+      <div>
+        <p style="margin:0 0 6px;font-weight:800;color:#ffe9b2">Get in touch</p>
+        <p class="small"><a href="mailto:info@noblesfurniture.com">info@noblesfurniture.com</a></p>
+        <p class="small"><a href="https://wa.me/218912131816" target="_blank" rel="noopener">WhatsApp</a></p>
+      </div>
+    </div>
+    <div class="sub">© <span id="year"></span> Majlis Al Nobala Company — All Rights Reserved.</div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a class="wa" href="https://wa.me/218912131816" target="_blank" aria-label="Chat on WhatsApp">💬</a>
+
+  <script>
+    // Reveal on scroll
+    const onScroll = () => {
+      document.querySelectorAll('.reveal').forEach(el=>{
+        const r = el.getBoundingClientRect();
+        if(r.top < window.innerHeight - 80) el.classList.add('show');
+      });
+    };
+    window.addEventListener('scroll', onScroll);
+    window.addEventListener('load', ()=>{ onScroll(); document.getElementById('year').textContent = new Date().getFullYear(); });
+
+    // Testimonials slider
+    const slides = document.getElementById('t_slides');
+    const dotsWrap = document.getElementById('t_dots');
+    let idx = 0;
+    const total = slides.children.length;
+    for(let i=0;i<total;i++){
+      const d=document.createElement('div'); d.className='dot'+(i===0?' active':'');
+      d.addEventListener('click',()=>go(i)); dotsWrap.appendChild(d);
+    }
+    function go(i){
+      idx = i;
+      slides.style.transform = `translateX(-${i*100}%)`;
+      [...dotsWrap.children].forEach((dot,k)=>dot.classList.toggle('active',k===i));
+    }
+    setInterval(()=>go((idx+1)%total), 4500);
+
+    // Contact form (demo)
+    function sendMessage(e){
+      e.preventDefault();
+      document.getElementById('result').style.display='block';
+      e.target.reset();
+    }
+    window.sendMessage = sendMessage;
+  </script>
 </body>
 </html>
-
-
